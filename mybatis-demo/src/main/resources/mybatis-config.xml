@@ -3,18 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+  <properties>
+    <property name="username" value="root"/>
+    <property name="password" value="Root@123"/>
+  </properties>
   <settings>
     <setting name="logImpl" value="LOG4J2"/>
   </settings>
-
   <typeAliases>
     <package name="fun.bitbit.bean"/>
   </typeAliases>
-  <environments default="development">
-    <environment id="development">
+  <environments default="dev">
+    <environment id="dev">
+      <transactionManager type="JDBC"/> <!--org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory-->
+      <dataSource type="POOLED"> <!--org.apache.ibatis.datasource.pooled.PooledDataSourceFactory-->
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://centos101:3306/mybatis"/>
+        <property name="username" value="root"/>
+        <property name="password" value="Root@123"/>
+      </dataSource>
+    </environment>
+    <environment id="prd">
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
-<!--        <property name="driver" value="com.mysql.jdbc.Driver"/>-->
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://centos101:3306/mybatis"/>
         <property name="username" value="root"/>
@@ -24,6 +35,7 @@
   </environments>
   <mappers>
     <mapper resource="mapper/PersonMapper.xml"/>
+<!--    <package name="fun.bitbit.mapper"/>-->
   </mappers>
 
 </configuration>
