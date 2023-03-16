@@ -9,12 +9,22 @@
   </properties>
   <settings>
     <setting name="logImpl" value="LOG4J2"/>
+    <setting name="mapUnderscoreToCamelCase" value="true"/>
+    <setting name="lazyLoadingEnabled" value="true" />
   </settings>
   <typeAliases>
     <package name="fun.bitbit.bean"/>
+    <package name="fun.bitbit.dto"/>
   </typeAliases>
+  <!-- 配置插件 -->
+  <plugins>
+    <!-- 分页插件 -->
+    <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+  </plugins>
   <environments default="dev">
     <environment id="dev">
+      <!--这个配置直接使用了 JDBC 的提交和回滚设施，它依赖从数据源获得的连接来管理事务作用域。-->
+      <!--如果你正在使用 Spring + MyBatis，则没有必要配置事务管理器，因为 Spring 模块会使用自带的管理器来覆盖此配置。-->
       <transactionManager type="JDBC"/> <!--org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory-->
       <dataSource type="POOLED"> <!--org.apache.ibatis.datasource.pooled.PooledDataSourceFactory-->
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
@@ -23,19 +33,19 @@
         <property name="password" value="Root@123"/>
       </dataSource>
     </environment>
-    <environment id="prd">
+    <environment id="local">
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://centos101:3306/mybatis"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
         <property name="username" value="root"/>
-        <property name="password" value="Root@123"/>
+        <property name="password" value="root"/>
       </dataSource>
     </environment>
   </environments>
   <mappers>
-    <mapper resource="mapper/PersonMapper.xml"/>
-<!--    <package name="fun.bitbit.mapper"/>-->
+<!--    <mapper resource="mapper/PersonMapper.xml"/>-->
+    <package name="fun.bitbit.mapper"/>
   </mappers>
 
 </configuration>
