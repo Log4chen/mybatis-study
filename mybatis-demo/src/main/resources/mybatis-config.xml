@@ -10,17 +10,21 @@
   <settings>
     <setting name="logImpl" value="LOG4J2"/>
     <setting name="mapUnderscoreToCamelCase" value="true"/>
-    <setting name="lazyLoadingEnabled" value="true" />
+    <setting name="lazyLoadingEnabled" value="true"/>
+    <!-- 一级缓存默认开启，且默认作用范围为 SESSION; 或者设置为 STATEMENT：仅针对当前执行的SQL语句生效 -->
+    <setting name="localCacheScope" value="STATEMENT"/>
+    <!-- 二级缓存默认是开启的，二级缓存作用范围是同一命名空间下的多个会话共享 -->
+    <setting name="cacheEnabled" value="true"/>
   </settings>
   <typeAliases>
     <package name="fun.bitbit.bean"/>
     <package name="fun.bitbit.dto"/>
   </typeAliases>
   <!-- 配置插件 -->
-  <plugins>
-    <!-- 分页插件 -->
-    <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
-  </plugins>
+<!--  <plugins>-->
+<!--    &lt;!&ndash; 分页插件 &ndash;&gt;-->
+<!--    <plugin interceptor="com.github.pagehelper.PageInterceptor"/>-->
+<!--  </plugins>-->
   <environments default="dev">
     <environment id="dev">
       <!--这个配置直接使用了 JDBC 的提交和回滚设施，它依赖从数据源获得的连接来管理事务作用域。-->
@@ -44,7 +48,7 @@
     </environment>
   </environments>
   <mappers>
-<!--    <mapper resource="mapper/PersonMapper.xml"/>-->
+    <!--    <mapper resource="mapper/PersonMapper.xml"/>-->
     <package name="fun.bitbit.mapper"/>
   </mappers>
 

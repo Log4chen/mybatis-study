@@ -21,11 +21,11 @@
         <artifactId>mybatis</artifactId>
         <version>3.5.7</version>
       </dependency>
-      <dependency>
-        <groupId>com.github.pagehelper</groupId>
-        <artifactId>pagehelper</artifactId>
-        <version>5.3.0</version>
-      </dependency>
+<!--      <dependency>-->
+<!--        <groupId>com.github.pagehelper</groupId>-->
+<!--        <artifactId>pagehelper</artifactId>-->
+<!--        <version>5.3.0</version>-->
+<!--      </dependency>-->
       <dependency>
         <groupId>ognl</groupId>
         <artifactId>ognl</artifactId>
